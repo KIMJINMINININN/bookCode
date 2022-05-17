@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import Textarea from 'components/common/Textarea';
 import { ReactComponent as Search } from '../asset/Search.svg';
+import Nodata from 'components/Nodata';
+import BookList from 'components/BookList';
 
 const Container = styled.div`
   position: relative;
   width: 960px;
-  height: 1635px;
+  height: 900px;
+  // height: 1000px;
   left: 480px;
   top: 80px;
   .Main-Header-Text{
@@ -100,9 +103,15 @@ const Container = styled.div`
   }
 
   .Main-Content{
-    
+    position: relative;
+    width: 960px;
+    // height: 1244px;
+    top: 40px;
   }
-  .
+
+  .ingredient{
+    color: rgb(72, 128, 238);
+  }
 `;
 
 // class Main extends Component {
@@ -122,11 +131,14 @@ const Main: React.FC = () => {
       </div>
       <div className="Main-Middle-Count">
         <div className="Main-Middle-left-Count">도서 검색 결과</div>
-        <div className="Main-Middle-right-Count">총 0건</div>
+        <div className="Main-Middle-right-Count">총 
+          <span className="ingredient">0</span>건
+        </div>
       </div>
-      <div className="Main-Content">
-
-      </div>
+      {/* <Nodata /> */}
+      <BookList />
+      {/* <div className="Main-Content"> */}
+      {/* </div> */}
     </Container>
   );
 }

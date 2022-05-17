@@ -1,31 +1,40 @@
 import React from "react";
 import styled from "styled-components";
+import { ReactComponent as BookIcon } from '../asset/BookIcon.svg';
 
 const Container = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
+  // display: flex;
+  // align-items: center;
+  // width: 100%;
+  // height: 80px;
+  // background: #EAF3FE;
+  // p{
+  //   width: 175px;
+  //   height: 24px;
+  //   font-size: 16px;
+  //   color: #6D7582;
+  // }
+  position: absolute;
+  width: 80px;
   height: 80px;
-  background: #EAF3FE;
-  h1{
-    position: absolute;
-    width: 142px;
-    height: 32px;
-    left: 440px;
+  left: 440px;
+  top: 334px;
+  p{
+    position: relative;
+    width: 175px;
+    height: 24px;
+    font-size: 16px;
+    color: #6D7582;
     top: 24px;
-    font-family: 'Noto Sans KR';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 32px;
-    color: #1A1E27;
+    right: 43px;
   }
 `;
 
 const Nodata: React.FC = () => {
     return (
         <Container>
-            <h1>데이터 없음</h1>
+            <BookIcon />
+            <p>검색된 결과가 없습니다.</p>
         </Container>
     );
 };
