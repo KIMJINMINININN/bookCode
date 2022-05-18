@@ -3,6 +3,8 @@ import styled, { css } from "styled-components";
 
 interface StyledButtonProps{
   width: string | undefined;
+  color: string | undefined;
+  background: string | undefined;
 }
 
 const Container = styled.button<StyledButtonProps>`
@@ -13,12 +15,13 @@ const Container = styled.button<StyledButtonProps>`
   padding: 0 15px;
   border: 0;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   outline: none;
   cursor: pointer;
   width: ${(props) => props.width};
-  background: #4880EE;
+  color: ${(props) => props.color};
+  background: ${(props) => props.background};
   svg {
     margin-right : 12px;
   }
@@ -29,19 +32,17 @@ interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
   color?: string;
   width: string;
   colorReverse?: boolean;
-  icon?: JSX.Element;
+  background: string;
 }
 
 const Button: React.FC<IProps> = ({
   children,
   color,
   width,
-  icon,
   ...props
 }) => {
   return (
     <Container {...props} color={color} width={width}>
-      {icon}
       {children}
     </Container>
   );

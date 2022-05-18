@@ -8,6 +8,7 @@ const App = () => (
   <div className="App">
     <GlobalStyle />
     <Root />
+    <div id="root-modal" />
   </div>
 );
 
