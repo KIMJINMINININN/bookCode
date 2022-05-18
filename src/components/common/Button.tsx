@@ -1,21 +1,23 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-interface StyledButtonProps{
+interface StyledButtonProps {
   width: string | undefined;
   color: string | undefined;
   background: string | undefined;
+  fontsize: string | undefined;
+  height: string | undefined;
 }
 
 const Container = styled.button<StyledButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 48px;
+  height: ${(props) => props.height ? props.height : '48px'};
   padding: 0 15px;
   border: 0;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: ${(props) => props.fontsize ? props.fontsize : '16px'};
   font-weight: 700;
   outline: none;
   cursor: pointer;
@@ -27,22 +29,26 @@ const Container = styled.button<StyledButtonProps>`
   }
 `;
 
-interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
+interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   color?: string;
   width: string;
   colorReverse?: boolean;
   background: string;
+  fontsize?: string;
+  height?: string;
 }
 
 const Button: React.FC<IProps> = ({
   children,
   color,
   width,
+  fontsize,
+  height,
   ...props
 }) => {
   return (
-    <Container {...props} color={color} width={width}>
+    <Container {...props} color={color} width={width} fontsize={fontsize} height={height}>
       {children}
     </Container>
   );

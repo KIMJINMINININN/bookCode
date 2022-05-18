@@ -8,6 +8,8 @@ import BookList from 'components/BookList';
 import useModal from "../hooks/useModal";
 import SearchModal from "../components/modal/SearchModal";
 import OutsideClickHandler from 'react-outside-click-handler';
+import Button from 'components/common/Button';
+
 
 const Container = styled.div`
   position: relative;
@@ -122,132 +124,103 @@ const Container = styled.div`
     color: rgb(72, 128, 238);
   }
 
-  .search-room-bar-guests-texts {
+  .search-book-modal{
     position: absolute;
-    width: calc(100% - 114px);
-    top: 16px;
-    left: 20px;
-  }
-  .search-room-bar-guests-label {
-    font-size: 10px;
-    font-weight: 800;
-    margin-bottom: 4px;
-  }
-  .search-room-bar-guests-popup {
-    position: absolute;
-    width: 394px;
-    top: 78px;
-    right: 0;
-    padding: 16px 32px;
-    background-color: white;
-    border-radius: 32px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
-    cursor: default;
-  }
-  .search-room-bar-guests-counter-wrapper {
-    padding: 16px 0;
-    border-bottom: 1px solid ${palette.gray_eb};
-    &:last-child {
-      border: 0;
+    width: 100%;
+    height: 70px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    bottom: 739px;
+    right: 200px;
+    .search-room-bar-guests-texts {
+      position: absolute;
+      width: calc(100% - 114px);
+      top: 16px;
+      left: 20px;
+    }
+    .search-room-bar-guests-label {
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .search-room-bar-guests-popup {
+      position: absolute;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 14px 6px rgba(151, 151, 151, 0.15);
+      border-radius: 8px;
+      width: 360px;
+      height: 210px;
+      right: 0px;
+    }
+    .search-room-bar-guests-counter-wrapper {
+      display: flex;
+      padding: 16px 0;
+      &:last-child {
+        border: 0;
+      }
+    }
+    .search-room-bar-guests-text {
+      font-size: 14px;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .search-room-bar-button-wrapper {
+      position: absolute;
+      right: 0;
+      top: 9px;
+      right: 12px;
     }
   }
-  .search-room-bar-guests-text {
-    font-size: 14px;
-    font-weight: 600;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .search-room-bar-button-wrapper {
-    position: absolute;
-    right: 0;
-    top: 9px;
-    right: 12px;
-  }
+
+  
 `;
 
 // class Main extends Component {
 const Main: React.FC = () => {
   // const {openModal, ModalPortal, closeModal} = useModal();
   const [popupOpened, setPopupOpened] = useState(false);
+
+
   // const [areaValue, setareaValue] = useState("검색어를 입력");
-  const onChangeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => setareaValue(e.target.value);
-
-    //* 로그인 클릭시
-  /* const onSubmitLogin = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setValidateMode(true);
-    if (!email || !password) {
-      alert("이메일과 비밀번호를 입력해 주세요.");
-    } else {
-      const loginBody = { email, password };
-
-      try {
-        const { data } = await loginAPI(loginBody);
-        dispatch(userActions.setLoggedUser(data));
-        closeModal();
-      } catch (e) {
-        console.log(e.response);
-      }
-    }
-  }; */
+  // const onChangeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => setareaValue(e.target.value);
   return (
     <Container>
       <p className="Main-Header-Text">도서 검색</p>
       <div className="Main-Header">
         <div className="Main-Header-Search">
           <Search />
-          <input type="text" placeholder="검색어 입력"/>
+          <input type="text" placeholder="검색어 입력" />
         </div>
         <div className="Main-Header-Button" onClick={() => setPopupOpened(true)}>상세검색</div>
       </div>
       <div className="Main-Middle-Count">
         <div className="Main-Middle-left-Count">도서 검색 결과</div>
-        <div className="Main-Middle-right-Count">총 
+        <div className="Main-Middle-right-Count">총
           <span className="ingredient">0</span>건
         </div>
       </div>
       {/* <Nodata /> */}
       <BookList />
-      <OutsideClickHandler onOutsideClick={() => setPopupOpened(false)}>
-        <div className="search-room-bar-guests-texts">
-          <p className="search-room-bar-guests-label">인원</p>
-          <p className="search-room-bar-guests-text">{guetsText}</p>
-        </div>
+      <div className="search-book-modal">
+        <OutsideClickHandler onOutsideClick={() => setPopupOpened(false)}>
+          {popupOpened && (
+            <div className="search-room-bar-guests-popup">
+              <div className="search-room-bar-guests-counter-wrapper">
+                <Button className="book-detail-button" width="86px" type="submit" color="#6D7582" background="#F2F4F6" fontsize="14px" height="32px">
+                  초기화
+                </Button>
+                <Button className="book-buy-button" width="86px" type="submit" color="#FFFFFF" background="#4880EE" fontsize="14px" height="32px">
+                  검색하기
+                </Button>
+              </div>
+            </div>
+          )}
+        </OutsideClickHandler>
+      </div>
 
-        <div className="search-room-bar-button-wrapper">
-          <SearchRoomButton />
-        </div>
-        {popupOpened && (
-          <div className="search-room-bar-guests-popup">
-            <div className="search-room-bar-guests-counter-wrapper">
-              <Counter
-                label="성인"
-                description="만 13세 이상"
-                onChange={(count) => setAdultCountDispatch(count)}
-                minValue={1}
-                value={adultCount}
-              />
-            </div>
-            <div className="search-room-bar-guests-counter-wrapper">
-              <Counter
-                label="어린이"
-                description="2~12세"
-                value={childrenCount}
-                onChange={(count) => setChildrenCountDispatch(count)}
-              />
-            </div>
-            <div className="search-room-bar-guests-counter-wrapper">
-              <Counter
-                label="유아"
-                description="2세 미만"
-                value={infantsCount}
-                onChange={(count) => setInfantsCountDispatch(count)}
-              />
-            </div>
-          </div>
-        )}
-      </OutsideClickHandler>
       {/* <ModalPortal>
         <SearchModal closeModal={closeModal}/>
       </ModalPortal> */}

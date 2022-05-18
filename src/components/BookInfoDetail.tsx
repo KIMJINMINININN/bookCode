@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Button from "./common/Button";
 import book from "../asset/book.png";
 import { ReactComponent as Arrow } from '../asset/Arrow.svg';
+import { request } from "axios/Http";
+import axios from "axios";
 
 const Container = styled.div`
   width: 100%;
@@ -165,6 +167,25 @@ const Container = styled.div`
 `;
 
 const BookInfoDetail: React.FC = () => {
+
+  //* api test
+  const apiTest = async () => {
+    const ID_KEY = 'spT7e4fr9Fv0p2YvkrOX';
+    const SECRET_KEY = 'TlD7RpKb9p';
+    try {
+      const items = await axios.get('https://cors-anywhere.herokuapp.com/https://openapi.naver.com/v1/search/book.json', { headers: { 'X-Naver-Client-Id': ID_KEY, 'X-Naver-Client-Secret': SECRET_KEY } });
+
+      console.log("items : ", items);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    apiTest();
+  }, []);
+
+
   return (
     <Container>
       <div className="book-detail-left">
@@ -177,17 +198,17 @@ const BookInfoDetail: React.FC = () => {
         </div>
         <p className="book-detail-middle-intro">책 소개</p>
         <div className="book-detail-middle-bottom">
-        “나를 언제까지나 잊지 마, 내가 여기 있었다는 걸 기억해 줘.”
+          “나를 언제까지나 잊지 마, 내가 여기 있었다는 걸 기억해 줘.”
 
-하루키 월드의 빛나는 다이아몬드
-무라카미 하루키를 만나기 위해 가장 먼저 읽어야 할 책!
+          하루키 월드의 빛나는 다이아몬드
+          무라카미 하루키를 만나기 위해 가장 먼저 읽어야 할 책!
 
-페이지를 처음 펼치는 오늘의 젊음들에게, 그리고 오랜 기억 속에 책의 한 구절을 간직하고 있는 어제의 젊음들에게, 한결같은 울림으로 예민하고 섬세한 청춘의 감성을 전하며 영원한 필독서로 사랑받고 있는 무라카미 하루키의 대표작 『노르웨이의 숲』. 1989년 『상실의 시대』라는 제명으로 처음 출간된 이래 우리 출판 사상 최장기 베스트셀러를 기록하며 하나의 사건으로 남은 소설, 『노르웨이의 숲』이 민음사 세계문학전집에 이어 단행본으로 출간되었다.
+          페이지를 처음 펼치는 오늘의 젊음들에게, 그리고 오랜 기억 속에 책의 한 구절을 간직하고 있는 어제의 젊음들에게, 한결같은 울림으로 예민하고 섬세한 청춘의 감성을 전하며 영원한 필독서로 사랑받고 있는 무라카미 하루키의 대표작 『노르웨이의 숲』. 1989년 『상실의 시대』라는 제명으로 처음 출간된 이래 우리 출판 사상 최장기 베스트셀러를 기록하며 하나의 사건으로 남은 소설, 『노르웨이의 숲』이 민음사 세계문학전집에 이어 단행본으로 출간되었다.
 
         </div>
       </div>
       <div className="book-detail-right">
-        <Button className="book-detail-button" width="115px" type="submit" color="#6D7582" background="#F2F4F6">
+        <Button className="book-detail-button" width="115px" type="submit" color="#6D7582" background="#F2F4F6" fontsize="16px">
           상세보기
           <Arrow />
         </Button>
@@ -199,8 +220,8 @@ const BookInfoDetail: React.FC = () => {
           <p className="book-detail-right-price2-title">할인가</p>
           <p className="book-detail-right-sale-price">13,500원</p>
         </div>
-        <Button className="book-buy-button" width="240px" type="submit" color="#FFFFFF" background="#4880EE">
-          구매하기 
+        <Button className="book-buy-button" width="240px" type="submit" color="#FFFFFF" background="#4880EE" fontsize="16px">
+          구매하기
         </Button>
       </div>
     </Container>

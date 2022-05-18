@@ -2,7 +2,7 @@ import React from 'react';
 import GlobalStyle from './styles/global-styles';
 import Root from './pages/Root';
 import './App.css';
-import { store } from './store/createStore'
+// import { store } from './store/createStore'
 
 const App = () => (
   <div className="App">
