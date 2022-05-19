@@ -3,17 +3,6 @@ import styled from "styled-components";
 import { ReactComponent as BookIcon } from '../asset/BookIcon.svg';
 
 const Container = styled.div`
-  // display: flex;
-  // align-items: center;
-  // width: 100%;
-  // height: 80px;
-  // background: #EAF3FE;
-  // p{
-  //   width: 175px;
-  //   height: 24px;
-  //   font-size: 16px;
-  //   color: #6D7582;
-  // }
   position: absolute;
   width: 80px;
   height: 80px;

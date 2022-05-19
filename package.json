@@ -73,5 +73,6 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.4.1",
     "redux-devtools-extension": "^2.13.9"
-  }
+  },
+  "proxy" : "https://openapi.naver.com"
 }

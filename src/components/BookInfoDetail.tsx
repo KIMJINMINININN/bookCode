@@ -4,7 +4,7 @@ import Button from "./common/Button";
 import book from "../asset/book.png";
 import { ReactComponent as Arrow } from '../asset/Arrow.svg';
 import { request } from "axios/Http";
-import axios from "axios";
+import Axios from "axios";
 
 const Container = styled.div`
   width: 100%;
@@ -167,14 +167,17 @@ const Container = styled.div`
 `;
 
 const BookInfoDetail: React.FC = () => {
-
   //* api test
   const apiTest = async () => {
+
+    const axios = Axios.create({
+      baseURL: process.env.PUBLIC_API_URL,
+    });
+
     const ID_KEY = 'spT7e4fr9Fv0p2YvkrOX';
     const SECRET_KEY = 'TlD7RpKb9p';
     try {
-      const items = await axios.get('https://cors-anywhere.herokuapp.com/https://openapi.naver.com/v1/search/book.json', { headers: { 'X-Naver-Client-Id': ID_KEY, 'X-Naver-Client-Secret': SECRET_KEY } });
-
+      const items = await axios.get('/v1/search/book.json', { headers: { 'X-Naver-Client-Id': ID_KEY, 'X-Naver-Client-Secret': SECRET_KEY } });
       console.log("items : ", items);
     } catch (error) {
       console.log(error);

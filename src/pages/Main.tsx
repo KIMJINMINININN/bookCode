@@ -133,18 +133,7 @@ const Container = styled.div`
     cursor: pointer;
     bottom: 739px;
     right: 200px;
-    .search-room-bar-guests-texts {
-      position: absolute;
-      width: calc(100% - 114px);
-      top: 16px;
-      left: 20px;
-    }
-    .search-room-bar-guests-label {
-      font-size: 10px;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-    .search-room-bar-guests-popup {
+    .search-book-modal-popup {
       position: absolute;
       background: #FFFFFF;
       box-shadow: 0px 4px 14px 6px rgba(151, 151, 151, 0.15);
@@ -153,25 +142,12 @@ const Container = styled.div`
       height: 210px;
       right: 0px;
     }
-    .search-room-bar-guests-counter-wrapper {
+    .search-book-modal-button-popup {
       display: flex;
       padding: 16px 0;
       &:last-child {
         border: 0;
       }
-    }
-    .search-room-bar-guests-text {
-      font-size: 14px;
-      font-weight: 600;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .search-room-bar-button-wrapper {
-      position: absolute;
-      right: 0;
-      top: 9px;
-      right: 12px;
     }
   }
 
@@ -180,12 +156,8 @@ const Container = styled.div`
 
 // class Main extends Component {
 const Main: React.FC = () => {
-  // const {openModal, ModalPortal, closeModal} = useModal();
   const [popupOpened, setPopupOpened] = useState(false);
 
-
-  // const [areaValue, setareaValue] = useState("검색어를 입력");
-  // const onChangeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => setareaValue(e.target.value);
   return (
     <Container>
       <p className="Main-Header-Text">도서 검색</p>
@@ -207,8 +179,8 @@ const Main: React.FC = () => {
       <div className="search-book-modal">
         <OutsideClickHandler onOutsideClick={() => setPopupOpened(false)}>
           {popupOpened && (
-            <div className="search-room-bar-guests-popup">
-              <div className="search-room-bar-guests-counter-wrapper">
+            <div className="search-book-modal-popup">
+              <div className="search-book-modal-button-popup">
                 <Button className="book-detail-button" width="86px" type="submit" color="#6D7582" background="#F2F4F6" fontsize="14px" height="32px">
                   초기화
                 </Button>
@@ -220,10 +192,6 @@ const Main: React.FC = () => {
           )}
         </OutsideClickHandler>
       </div>
-
-      {/* <ModalPortal>
-        <SearchModal closeModal={closeModal}/>
-      </ModalPortal> */}
     </Container>
   );
 }
